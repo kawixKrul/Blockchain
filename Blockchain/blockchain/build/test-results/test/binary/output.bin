@@ -1,0 +1,151 @@
+[1;31m
+Start test 1[0m
+
+            Block:
+%            Created by miner: miner3
+            miner3 gets 100 VC
+            Id: 1
+%            Timestamp: 1688152272262
+&            Magic number: -2079821077
+(            Hash of the previous block:
+            0
+            Hash of the block:
+M            e28fc9e0d620bc404c7b4b1382cc2e03a5db052a88067be32b8402b6aa37e0ef
+            Block data:
+            No transactions
+3            Block was generating for 0.012 seconds
+!            N was increased by 1
+            
+
+            Block:
+%            Created by miner: miner8
+            miner8 gets 100 VC
+            Id: 1
+%            Timestamp: 1688152272262
+%            Magic number: 2126371404
+(            Hash of the previous block:
+            0
+            Hash of the block:
+M            ab1ba9a99f232554b3a87e2e9ac7b74fc5945a1e39db745ca1c81f19a928f116
+            Block data:
+/            CarPartsShop sent 20 VC to CarShop
+3            Block was generating for 0.012 seconds
+!            N was increased by 1
+            
+
+            Block:
+&            Created by miner: miner10
+             miner10 gets 100 VC
+            Id: 2
+%            Timestamp: 1688152272295
+%            Magic number: 1860817884
+(            Hash of the previous block:
+M            e28fc9e0d620bc404c7b4b1382cc2e03a5db052a88067be32b8402b6aa37e0ef
+            Hash of the block:
+M            0082933f8c3fe94f89de9a4183e0c0b21ae85e6fc410323444af94c9875d3c75
+            Block data:
+            No transactions
+3            Block was generating for 0.002 seconds
+!            N was increased by 1
+            
+
+            Block:
+%            Created by miner: miner4
+            miner4 gets 100 VC
+            Id: 4
+%            Timestamp: 1688152272297
+%            Magic number: 1826134453
+(            Hash of the previous block:
+M            0082933f8c3fe94f89de9a4183e0c0b21ae85e6fc410323444af94c9875d3c75
+            Hash of the block:
+M            000eedf707687279ae50bd3c29109fcf05e23fe4cb907210c3168262534901e3
+            Block data:
+            No transactions
+3            Block was generating for 0.075 seconds
+!            N was increased by 1
+            
+
+            Block:
+%            Created by miner: miner7
+            miner7 gets 100 VC
+            Id: 5
+%            Timestamp: 1688152272372
+%            Magic number: 1932357570
+(            Hash of the previous block:
+M            000eedf707687279ae50bd3c29109fcf05e23fe4cb907210c3168262534901e3
+            Hash of the block:
+M            00007d4f1b8decb3af241c59d7707c30bc5a5f7d4a5e15ded18eee167b93270b
+            Block data:
+,            BeautyShop sent 2 VC to Worker1
+Worker1 sent 20 VC to Nick
+miner3 sent 20 VC to FastFood
+3            Block was generating for 0.127 seconds
+!            N was increased by 1
+            
+
+            Block:
+%            Created by miner: miner0
+            miner0 gets 100 VC
+            Id: 6
+%            Timestamp: 1688152272506
+%            Magic number: -860720188
+(            Hash of the previous block:
+M            00007d4f1b8decb3af241c59d7707c30bc5a5f7d4a5e15ded18eee167b93270b
+            Hash of the block:
+M            0000011f402db9988175eecd57ee682a3e75fa0ef78b1bc65aac262f89611e50
+            Block data:
+)            Nick sent 1 VC to BeautyShop
+3            Block was generating for 2.462 seconds
+!            N was decreased by 1
+            
+
+            Block:
+%            Created by miner: miner1
+            miner1 gets 100 VC
+            Id: 6
+%            Timestamp: 1688152274972
+$            Magic number: 176309106
+(            Hash of the previous block:
+M            00007d4f1b8decb3af241c59d7707c30bc5a5f7d4a5e15ded18eee167b93270b
+            Hash of the block:
+M            0000872a21b385e45adff2d045991c76fca6df82be13bbc917aa4b2a1d304d77
+            Block data:
+#            Nick sent 1 VC to Nick
+Worker2 sent 50 VC to Worker2
+3            Block was generating for 0.003 seconds
+!            N was increased by 1
+            
+
+            Block:
+%            Created by miner: miner9
+            miner9 gets 100 VC
+            Id: 8
+%            Timestamp: 1688152274980
+%            Magic number: 1562836677
+(            Hash of the previous block:
+M            0000872a21b385e45adff2d045991c76fca6df82be13bbc917aa4b2a1d304d77
+            Hash of the block:
+M            000002ee8cfee3af372f6b15a7777accb4c05178202c4e5fb41e39877f4326df
+            Block data:
+            No transactions
+3            Block was generating for 0.091 seconds
+!            N was increased by 1
+            
+
+            Block:
+%            Created by miner: miner9
+            miner9 gets 100 VC
+            Id: 9
+%            Timestamp: 1688152275071
+%            Magic number: 1982472912
+(            Hash of the previous block:
+M            000002ee8cfee3af372f6b15a7777accb4c05178202c4e5fb41e39877f4326df
+            Hash of the block:
+M            0000005b2b8edef96e47e9aa7da9badd456aa97685ff5f427defffd92962105b
+            Block data:
+)            miner3 sent 50 VC to Worker1
+!ShoesShop sent 2 VC to ShoesShop
+miner1 sent 1 VC to Director1
+2            Block was generating for 0.14 seconds
+!            N was increased by 1
+            
