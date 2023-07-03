@@ -1,0 +1,7 @@
+# Ignore IntelliJ IDEA files and directories
+.idea/
+
+# Ignore Gradle directories
+.gradle/
+gradle/
+KeyPair
