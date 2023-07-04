@@ -4,4 +4,6 @@
 # Ignore Gradle directories
 .gradle/
 gradle/
-KeyPair
+KeyPair/
+build/
+Blockchain/blockchain/build/
