@@ -3,7 +3,10 @@
 
 # Ignore Gradle directories
 .gradle/
-gradle/
+
+# Public and private keys
 KeyPair/
+
+# Ignore build directories
 build/
 Blockchain/blockchain/build/

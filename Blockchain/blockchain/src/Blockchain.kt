@@ -3,29 +3,30 @@ package blockchain
 import kotlin.random.Random
 
 class Blockchain(@Volatile private var n: Int) {
-    val blockchain = mutableListOf<Block>()
+    val blockchain = mutableListOf<Block>(Block(1, System.currentTimeMillis(), "0", null, listOf()))
     private var timestamp = System.currentTimeMillis()
-    private val miners = List(15) { Miner() }
+    val miners = List(15) { Miner() }
+    private val transactionHandler = Transactions
+    private val transactionMaker = TransactionMaker()
+    private val data = mutableListOf<Message>()
 
     companion object {
         const val BLOCKCHAIN_LENGTH = 15
-        var identifier: Long = Long.MIN_VALUE
-        val customers = listOf(
-            "Bob", "Alice", "Nick",
-            "ShoesShop", "FastFood", "CarShop", "Worker1", "Worker2",
-            "Worker3", "Director1", "CarPartsShop", "GamingShop", "BeautyShop")
-        val payment = listOf(1,2,5,10,20,50)
+        @Volatile var identifier: Long = Long.MIN_VALUE
     }
 
     init {
-        
+        println(blockchain[0])
+        n += 1
+        transactionMaker.start()
         for (miner in miners) miner.start()
         for (miner in miners) miner.join()
+        transactionMaker.join()
     }
 
     // gets valid block
     private fun getValid(id: Int, previousHash: String, miner: Int): Block? {
-        val block = Block(id, timestamp, previousHash, miner)
+        val block = Block(id, timestamp, previousHash, miner, data)
         synchronized(this) {
             if (block.isValid(n, blockchain)) {
                 n = when (block.generationTime) {
@@ -33,32 +34,23 @@ class Blockchain(@Volatile private var n: Int) {
                     in 0.25..1.0 -> n
                     else -> n - 1
                 }
-                val msg = List(Random.nextInt(0,5)) { Message(transaction(), identifier++) }
-                block.data = msg.filter { it.data != "" }.sortedBy { it.identifier }
-                miners[miner].coins += 100
-                timestamp = System.currentTimeMillis()
+                updateData()
                 return block
             } else return null
         }
     }
 
+    @Synchronized
+    private fun updateData() {
+        data.clear()
+        Transactions.validateTransactions().forEach { data.add(Message(it, identifier++)) }
+        Transactions.clearBuffer()
+        timestamp = System.currentTimeMillis()
+    }
+
     fun printBlock(block: Block): Block {
         println(block)
         return block
-    }
-
-    private fun transaction(): String {
-        val buyer = if (Random.nextInt()%2==0) customers.random() else miners.random()
-        val target = customers.random()
-        val pay = payment.random()
-        if (buyer is Miner && buyer.coins > pay) {
-            buyer.coins -= pay
-            return "miner${miners.indexOf(buyer)} sent $pay VC to $target"
-        } else if (buyer is Miner) {
-            return ""
-        } else {
-            return "$buyer sent $pay VC to $target"
-        }
     }
 
     override fun toString(): String {
@@ -67,7 +59,7 @@ class Blockchain(@Volatile private var n: Int) {
 
     // class for a miner
     inner class Miner(): Thread() {
-        var coins = 0
+        var coins = 100
 
         override fun run() {
             while (blockchain.size < BLOCKCHAIN_LENGTH) {
@@ -76,4 +68,17 @@ class Blockchain(@Volatile private var n: Int) {
             }
         }
     }
+
+    // class that generates transactions during the mining process
+    inner class TransactionMaker(): Thread() {
+        override fun run() {
+            while (blockchain.size < BLOCKCHAIN_LENGTH) {
+                if (Transactions.transactionList.size < Transactions.MAX_TRANSACTIONS)
+                    transactionHandler.createTransaction(miners.random())
+                else
+                    sleep(100)
+            }
+        }
+    }
+
 }
