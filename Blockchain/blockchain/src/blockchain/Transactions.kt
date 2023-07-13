@@ -1,4 +1,4 @@
-package blockchain
+package blockchain.Blockchain
 
 import kotlin.random.Random
 
@@ -29,9 +29,9 @@ object Transactions {
         val target = customers.random()
         val pay = payment.random()
         if (buyer is Blockchain.Miner) {
-            transactionList.listWithMiners.add(Transaction(buyer, target, pay))
+            TransactionList.listWithMiners.add(Transaction(buyer, target, pay))
         } else {
-            transactionList.withoutMiners.add(Transaction(buyer.toString(), target, pay))
+            TransactionList.withoutMiners.add(Transaction(buyer.toString(), target, pay))
         }
     }
 
@@ -41,14 +41,14 @@ object Transactions {
     @Synchronized
     fun validateTransactions(): List<String> {
         val result = mutableListOf<String>()
-        for (t in transactionList.listWithMiners) {
+        for (t in TransactionList.listWithMiners) {
             if (t.buyer.coins >= t.money) {
                 t.buyer.coins -= t.money
                 t.validated = true
                 result.add("${t.buyer.name} sent ${t.money} to ${t.target}")
             }
         }
-        for (t in transactionList.withoutMiners) {
+        for (t in TransactionList.withoutMiners) {
             if (t.buyer != t.target) {
                 t.validated = true
                 result.add("${t.buyer} sent ${t.money} to ${t.target}")
@@ -59,7 +59,7 @@ object Transactions {
 
     @Synchronized
     fun clearBuffer() {
-        transactionList.listWithMiners.clear()
-        transactionList.withoutMiners.clear()
+        TransactionList.listWithMiners.clear()
+        TransactionList.withoutMiners.clear()
     }
 }

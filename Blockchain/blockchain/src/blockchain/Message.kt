@@ -1,4 +1,4 @@
-package blockchain
+package blockchain.Blockchain
 
 import java.io.*
 import java.nio.file.Files

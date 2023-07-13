@@ -1,4 +1,4 @@
-package blockchain
+package blockchain.Blockchain
 
 import kotlin.random.Random
 import java.security.MessageDigest

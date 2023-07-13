@@ -1,6 +1,4 @@
-package blockchain
-
-import kotlin.random.Random
+package blockchain.Blockchain
 
 class Blockchain(@Volatile private var n: Int) {
     val blockchain = mutableListOf<Block>(Block(1, System.currentTimeMillis(), "0", null, listOf()))
@@ -73,8 +71,8 @@ class Blockchain(@Volatile private var n: Int) {
     inner class TransactionMaker(): Thread() {
         override fun run() {
             while (blockchain.size < BLOCKCHAIN_LENGTH) {
-                if (Transactions.transactionList.size < Transactions.MAX_TRANSACTIONS)
-                    transactionHandler.createTransaction(miners.random())
+                if (Transactions.TransactionList.size < Transactions.MAX_TRANSACTIONS)
+                    Transactions.createTransaction(miners.random())
                 else
                     sleep(100)
             }

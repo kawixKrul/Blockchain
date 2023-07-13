@@ -1,4 +1,4 @@
-package blockchain
+package blockchain.Blockchain
 
 import java.io.File
 import java.io.FileOutputStream
