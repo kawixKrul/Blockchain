@@ -1,10 +1,12 @@
 buildscript {
-
+    ext.kotlin_version = '1.8.0'
     repositories {
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$hs.kotlin.version"
+        // Other dependencies
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -14,8 +16,7 @@ subprojects {
     apply plugin: 'kotlin'
 
     def userJava = Integer.parseInt(JavaVersion.current().getMajorVersion())
-    def hsJava = Integer.parseInt(hs.kotlin.javaVersion)
-    def testJava = Math.max(userJava, hsJava)
+    def testJava = userJava
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(testJava)
 
@@ -33,11 +34,11 @@ subprojects {
 
     repositories {
         mavenCentral()
-		maven { url "https://jitpack.io" }
+        maven { url "https://jitpack.io" }
     }
 
     dependencies {
-
+        // Define project dependencies
     }
 
     configurations.all {
@@ -55,5 +56,5 @@ subprojects {
 }
 
 wrapper {
-    gradleVersion = hs.gradle.version
+    gradleVersion = '7.2'
 }
