@@ -43,3 +43,6 @@ bin/
 
 # genereated files
 KeyPair/
+
+# Intelij files
+.idea
