@@ -1,16 +1,14 @@
-package blockchain
+package services.transactions
 
+import blockchain.Blockchain
 import kotlin.random.Random
 
-// Object for storing transaction info and creating transactions
-// also for making sure that the transactions can be validated
 object Transactions {
     val customers = listOf(
         "Bob", "Alice", "Nick",
         "ShoesShop", "FastFood", "CarShop", "Worker1", "Worker2",
         "Worker3", "Director1", "CarPartsShop", "GamingShop", "BeautyShop")
     val payment = listOf(1,2,5,10,20,50)
-    val transactionList = TransactionList
     const val MAX_TRANSACTIONS = 10
 
     object TransactionList {

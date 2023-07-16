@@ -1,15 +1,16 @@
 package blockchain
 
+import services.transactions.Transactions
+
 class Blockchain(@Volatile private var n: Int) {
-    val blockchain = mutableListOf<Block>(Block(1, System.currentTimeMillis(), "0", null, listOf()))
+    val blockchain = mutableListOf(Block(1, System.currentTimeMillis(), "0", null, listOf()))
     private var timestamp = System.currentTimeMillis()
     val miners = List(15) { Miner() }
-    private val transactionHandler = Transactions
     private val transactionMaker = TransactionMaker()
     private val data = mutableListOf<Message>()
 
     companion object {
-        const val BLOCKCHAIN_LENGTH = 15
+        const val BLOCKCHAIN_LENGTH = 5
         @Volatile var identifier: Long = Long.MIN_VALUE
     }
 
@@ -41,9 +42,16 @@ class Blockchain(@Volatile private var n: Int) {
     @Synchronized
     private fun updateData() {
         data.clear()
-        Transactions.validateTransactions().forEach { data.add(Message(it, identifier++)) }
+        Transactions.validateTransactions().forEach { data.add(Message(it)) }
         Transactions.clearBuffer()
         timestamp = System.currentTimeMillis()
+    }
+
+    fun validateChain(): Boolean {
+        for (i in 1..<blockchain.size) {
+            if (blockchain[i-1].hash != blockchain[i].previousHash) return false
+        }
+        return true
     }
 
     fun printBlock(block: Block): Block {
@@ -51,9 +59,7 @@ class Blockchain(@Volatile private var n: Int) {
         return block
     }
 
-    override fun toString(): String {
-        return blockchain.joinToString("\n")
-    }
+    override fun toString(): String = blockchain.joinToString("\n")
 
     // class for a miner
     inner class Miner(): Thread() {

@@ -1,5 +1,7 @@
 import blockchain.Blockchain
-import blockchain.GenerateKeys
+import blockchain.Message
+import blockchain.VerifyMessage
+import services.cryptography.GenerateKeys
 import java.io.File
 import java.io.IOException
 import java.security.NoSuchAlgorithmException
@@ -24,4 +26,9 @@ fun main(args: Array<String>) {
     }
 
     val blockchain = Blockchain(0)
+
+    val test = readln()
+    Message(test).writeToFile("KeyPair/message")
+    VerifyMessage("KeyPair/message", "KeyPair/publicKey")
 }
+

@@ -1,4 +1,4 @@
-package blockchain
+package services.cryptography
 
 import java.io.File
 import java.io.FileOutputStream
@@ -7,7 +7,7 @@ import java.security.KeyPairGenerator
 import java.security.PrivateKey
 import java.security.PublicKey
 
-class GenerateKeys(private val keyLength: Int) {
+class GenerateKeys(keyLength: Int) {
     private val keyGen: KeyPairGenerator = KeyPairGenerator.getInstance("RSA")
     private var pair: KeyPair? = null
     var privateKey: PrivateKey? = null
